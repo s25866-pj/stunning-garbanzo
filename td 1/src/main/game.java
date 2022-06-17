@@ -3,13 +3,10 @@ import inputs.KeyboardListner;
 import inputs.MyMouseListener;
 
 
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.InputStream;
-
-
+import java.net.URL;
 
 class Game extends JFrame implements Runnable{
     private final GameScreen gameScreen;
@@ -38,8 +35,13 @@ private KeyListener keyListener;
     }
 
     private void importImg() {
-        InputStream is = getClass().getResourceAsStream("/spriteatlas.png");
-        System.out.println(is);
+        URL is= getClass().getResource("/spriteatlas.png");
+        if(is == null) {
+            System.out.println("Brak Grafik");
+        }
+        else{
+
+        }
     }
 
     private void initInputs(){
