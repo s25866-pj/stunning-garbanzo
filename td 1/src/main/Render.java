@@ -13,6 +13,11 @@ public class Render {
 
     switch (GameStates.gameStates){
         case MENU:
+//            for(int i=0; i<20;i++){
+//                for(int j=0;j<20;j++){
+//                    g.drawImage(sprites.get(getRndInt()),i*32,y*32,null);
+//                }
+//            }
             break;
         case PLAYNIG:
             break;

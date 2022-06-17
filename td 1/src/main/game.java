@@ -2,13 +2,20 @@ package main;
 import inputs.KeyboardListner;
 import inputs.MyMouseListener;
 
+
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
+
+
 
 class Game extends JFrame implements Runnable{
     private final GameScreen gameScreen;
 private final double FPS_SET = 120.0;
 private final double UPS_SET = 60.0;
+private BufferedImage img;
 
     private int updates;
     private long lastTimeUPS;
@@ -18,10 +25,9 @@ private MyMouseListener myMouseListener;
 private KeyListener keyListener;
 
     public Game(){
-
-
+        importImg();
         this.setTitle("Jebać jave");
-        this.gameScreen = new GameScreen();
+        this.gameScreen = new GameScreen(img);
         this.add(gameScreen);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
@@ -30,6 +36,12 @@ private KeyListener keyListener;
         this.setVisible(true);
 
     }
+
+    private void importImg() {
+        InputStream is = getClass().getResourceAsStream("/spriteatlas.png");
+        System.out.println(is);
+    }
+
     private void initInputs(){
         myMouseListener = new MyMouseListener();
         keyListener = new KeyboardListner();
