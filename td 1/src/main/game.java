@@ -3,9 +3,12 @@ import inputs.KeyboardListner;
 import inputs.MyMouseListener;
 
 
-import javax.swing.JFrame;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 class Game extends JFrame implements Runnable{
@@ -23,7 +26,7 @@ private KeyListener keyListener;
 
     public Game(){
         importImg();
-        this.setTitle("Jebać jave");
+        this.setTitle("JavaProject");
         this.gameScreen = new GameScreen(img);
         this.add(gameScreen);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -34,13 +37,14 @@ private KeyListener keyListener;
 
     }
 
-    private void importImg() {
-        URL is= getClass().getResource("/spriteatlas.png");
-        if(is == null) {
-            System.out.println("Brak Grafik");
-        }
-        else{
+    public final void importImg() {
 
+        InputStream is = getClass().getResourceAsStream("./spriteatlas.png");
+        System.out.println(img);
+        try{
+            img = ImageIO.read(is);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
