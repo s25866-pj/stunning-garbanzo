@@ -4,22 +4,23 @@ import objects.Tile;
 import scenes.Playing;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import static main.GameStates.MENU;
 import static main.GameStates.SetGameState;
 
 public class BottomBar {
-    private int x,y, width,hight;
+    public int x,y, width,height;
     private MyButton bMenu;
     private Playing playing;
     private ArrayList<MyButton> tileButtons = new ArrayList<>();
 
-    public BottomBar(int x, int y, int width, int hight, Playing playing) {
+    public BottomBar(int x, int y, int width, int heigth, Playing playing) {
         this.x = x;
         this.y = y;
         this.width = width;
-        this.hight = hight;
+        this.height=height;
         this.playing=playing;
         initButtons();
     }
@@ -33,19 +34,25 @@ public class BottomBar {
         bMenu=new MyButton("Menu",2,642,100,30);
         int i=0;
         for(Tile tile : playing.getTileManager().tiles){
-            tileButtons.add(new MyButton(tile.getName(),xStart+xOffset*i++,yStart,w,h));
+            tileButtons.add(new MyButton(tile.getName(),xStart+xOffset*i,yStart,w,h,i));
+            i++;
         }
     }
     private void drawButtons(Graphics g){
         bMenu.draw(g);
-        for(MyButton b :tileButtons){
-            b.draw(g);
+        drawTileButtons(g);
+
+    }
+    private void drawTileButtons(Graphics g) {
+        for(MyButton b : tileButtons){
+            g.drawImage(getButtImg(b.getId()),b.x,b.y,b.width,b.heigth,null);
         }
     }
+    public BufferedImage getButtImg(int id){return playing.getTileManager().getSprite(id);}
     public void draw (Graphics g){
 
         g.setColor(new Color(222,123,14));
-        g.fillRect(x,y,width,hight);
+        g.fillRect(x,y,width,height);
         drawButtons(g);
     }
 
