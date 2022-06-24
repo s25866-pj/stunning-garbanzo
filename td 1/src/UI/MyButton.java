@@ -31,11 +31,8 @@ public class MyButton {
     }
     public void draw(Graphics g){
         drawBody(g);
-
         drawBorder(g);
-
         drawText(g);
-
     }
 
     public int getId() {
@@ -55,7 +52,12 @@ public class MyButton {
         }
 
     }
-
+    public boolean isMouseOver(){
+            return mouseOver;
+    }
+    public boolean isMousePressed(){
+            return mousePressed;
+    }
     private void drawBody(Graphics g) {
         if(mouseOver){
             g.setColor(Color.DARK_GRAY);

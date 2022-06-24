@@ -26,6 +26,9 @@ public Tile GRASS,WATER,ROAD,CORNER,END;
     private void loadAtlas() {
         atlas= LoadSaves.getSpriteAtlas();
     }
+    public Tile getTile(int id){
+        return tiles.get(id);
+    }
     public BufferedImage getSprite(int id){
             return tiles.get(id).getSprite();
     }
