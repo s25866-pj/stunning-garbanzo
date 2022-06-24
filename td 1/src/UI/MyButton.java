@@ -31,8 +31,10 @@ public class MyButton {
     private void drawBorder(Graphics g) {
         if(mousePressed){
             g.setColor(Color.BLACK);
-            g.drawRect(x+1, y+1, width-2, height-2);
-            g.drawRect(x+2, y+2, width-4, height-4);
+            for (int i=1; i<6;i++){
+                g.drawRect(x+i, y+i, width-2*i, height-2*i);
+            }
+
         }else {
             g.setColor(Color.BLACK);
             g.drawRect(x, y, width, height);
@@ -56,6 +58,10 @@ public class MyButton {
         int w = g.getFontMetrics().stringWidth(text);
         int h = g.getFontMetrics().getHeight();
         g.drawString(text,x-w/2 +width/2,y+h/2+height/2);
+    }
+    public void resetBooleans(){
+        this.mouseOver=false;
+        this.mousePressed=false;
     }
     public void setMouseOver(boolean mouseOver){
         this.mouseOver=mouseOver;

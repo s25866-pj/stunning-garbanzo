@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class TileManager {
-    public Tile GRASS,WATER,ROAD;
+public Tile GRASS,WATER,ROAD,CORNER,END;
     public BufferedImage atlas;
     public ArrayList<Tile> tiles=new ArrayList<>();
     public TileManager(){
@@ -18,6 +18,9 @@ public class TileManager {
         tiles.add(GRASS=new Tile(getSprite(9,0)) );
         tiles.add(WATER=new Tile(getSprite(0,0)) );
         tiles.add(ROAD=new Tile(getSprite(8,0)) );
+        tiles.add(CORNER=new Tile(getSprite(7,0)) );
+        tiles.add(END=new Tile(getSprite(9,2)) );
+
     }
     private void loadAtlas() {
         atlas= LoadSaves.getSpriteAtlas();
