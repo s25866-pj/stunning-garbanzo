@@ -9,44 +9,29 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 
 class Game extends JFrame implements Runnable{
     private final GameScreen gameScreen;
-private final double FPS_SET = 120.0;
-private final double UPS_SET = 60.0;
-private BufferedImage img;
-
+    private final double FPS_SET = 120.0;
+    private final double UPS_SET = 60.0;
     private int updates;
     private long lastTimeUPS;
-
     private Thread gameThread;
-private MyMouseListener myMouseListener;
-private KeyListener keyListener;
-
+    private MyMouseListener myMouseListener;
+    private KeyListener keyListener;
     public Game(){
-        importImg();
-        this.setTitle("JavaProject");
-        this.gameScreen = new GameScreen(img);
-        this.add(gameScreen);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
+        setTitle("JavaProject");
+
+        gameScreen = new GameScreen(this);
+        add(gameScreen);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         pack();
 //        this.setSize(800,820);
         this.setVisible(true);
 
     }
 
-    public final void importImg() {
-
-        InputStream is = getClass().getResourceAsStream("./spriteatlas.png");
-        System.out.println(img);
-        try{
-            img = ImageIO.read(is);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     private void initInputs(){
         myMouseListener = new MyMouseListener();
@@ -66,8 +51,6 @@ private KeyListener keyListener;
 
 
     private void updateGame(){
-        updates++;
-      //  System.out.println("Game updated");
     }
     private void callUPS(){
         if(System.currentTimeMillis() - lastTimeUPS>=1000){
@@ -80,9 +63,7 @@ private KeyListener keyListener;
         Game game = new Game();
         game.initInputs();
         game.start();
-
     }
-
     @Override
     public void run() {
         double timePerFrame = 1000000000.0/FPS_SET;
@@ -90,7 +71,6 @@ private KeyListener keyListener;
         long lastFrame = System.nanoTime();
         long lastUpdate = System.nanoTime();
         long lastTimeCheck = System.currentTimeMillis();
-
         int frames = 0;
         int updates = 0;
         long now;
@@ -105,15 +85,12 @@ private KeyListener keyListener;
                 updateGame();
                 lastUpdate=now;
                 updates++;
-
             }
             if(System.currentTimeMillis() - lastTimeCheck>=1000){
                 System.out.println("FPS: "+frames+" | UPS: "+updates);
                 updates=0;
                 frames = 0;
                 lastTimeCheck=System.currentTimeMillis();
-
-
             }
         }
     }
