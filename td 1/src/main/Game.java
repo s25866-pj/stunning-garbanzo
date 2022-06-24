@@ -19,13 +19,13 @@ public class Game extends JFrame implements Runnable{
     private MyMouseListener myMouseListener;
     private KeyListener keyListener;
     private Render render;
-    private Menu menu;
+    public Menu menu;
     private Playing playing;
     private Settings settings;
 
     public Game(){
         setTitle("JavaProject");
-
+        render = new Render(this);
         gameScreen = new GameScreen(this);
         add(gameScreen);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -37,7 +37,7 @@ public class Game extends JFrame implements Runnable{
     }
 
     private void initClasses() {
-        render = new Render(this);
+
         this.setVisible(true);
         menu=new Menu(this);
         playing=new Playing(this);

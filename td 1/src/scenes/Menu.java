@@ -16,36 +16,38 @@ public class Menu extends GameScene implements SceneMethods{
     private Random random;
     public Menu(Game game) {
         super(game);
-        importImg();
-        loadSprites();
+    //    importImg();
+      //  loadSprites();
         random=new Random();
     }
 
     @Override
     public void render(Graphics g) {
-        for(int i=0; i<20;i++){
-            for(int j=0;j<20;j++){
-                g.drawImage(sprites.get(getRndInt()),j*32,i*32,null);
-            }
-        }
+        g.setColor(Color.blue);
+        g.fillRect(0,0,640,640);
+//        for(int i=0; i<20;i++){
+//            for(int j=0;j<20;j++){
+//                g.drawImage(sprites.get(getRndInt()),j*32,i*32,null);
+//            }
+//        }
     }
     public final void importImg() {
-        InputStream is = getClass().getResourceAsStream("/res/spriteatlas.png");
+        InputStream is = getClass().getResourceAsStream("/spriteatlas.png");
         try{
             img = ImageIO.read(is);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    private void loadSprites(){
-        for(int i=0;i<2;i++){
-            for(int j=0;j<10;j++){
-                sprites.add(img.getSubimage(j * 32,i * 32,32,32));
-            }
-        }
-    }
-    private int getRndInt(){
-        return random.nextInt(20);
-    }
+//    private void loadSprites(){
+//        for(int i=0;i<2;i++){
+//            for(int j=0;j<10;j++){
+//                sprites.add(img.getSubimage(j * 32,i * 32,32,32));
+//            }
+//        }
+//    }
+//    private int getRndInt(){
+//        return random.nextInt(20);
+//    }
 }
 

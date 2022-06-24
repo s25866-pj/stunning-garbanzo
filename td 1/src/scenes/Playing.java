@@ -1,6 +1,5 @@
 package scenes;
 import java.awt.*;
-
 import helper.LevelBuild;
 import main.Game;
 import managers.TileManager;
@@ -11,6 +10,7 @@ public class Playing extends GameScene implements SceneMethods {
     public Playing(Game game) {
         super(game);
         lvl = LevelBuild.getLevelData();
+        tileManager=new TileManager();
 
     }
 
