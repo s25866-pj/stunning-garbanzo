@@ -33,7 +33,9 @@ public class Playing extends GameScene implements SceneMethods {
 
         bottomBar.draw(g);
     }
-
+    public TileManager getTileManager(){
+        return tileManager;
+    }
     @Override
     public void mouseClicked(int x, int y) {
         if(y>=640){

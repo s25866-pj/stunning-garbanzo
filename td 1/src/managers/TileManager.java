@@ -15,11 +15,12 @@ public Tile GRASS,WATER,ROAD,CORNER,END;
     }
 
     private void createTiles() {
-        tiles.add(GRASS=new Tile(getSprite(9,0)) );
-        tiles.add(WATER=new Tile(getSprite(0,0)) );
-        tiles.add(ROAD=new Tile(getSprite(8,0)) );
-        tiles.add(CORNER=new Tile(getSprite(7,0)) );
-        tiles.add(END=new Tile(getSprite(9,2)) );
+        int id=0;
+        tiles.add(GRASS=new Tile(getSprite(9,0),id++,"Grass") );
+        tiles.add(WATER=new Tile(getSprite(0,0),id++,"Water") );
+        tiles.add(ROAD=new Tile(getSprite(8,0),id++,"Road") );
+        tiles.add(CORNER=new Tile(getSprite(7,0),id++,"Corner") );
+        tiles.add(END=new Tile(getSprite(9,2),id++,"End") );
 
     }
     private void loadAtlas() {
