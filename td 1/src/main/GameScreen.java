@@ -1,16 +1,14 @@
 package main;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Random;
+
 public class GameScreen extends JPanel {
-    private Game game;
+    private main.game game;
     private Dimension size;
-    private Render render;
-    public GameScreen(Game game) {
+
+    public GameScreen(main.game game) {
         this.game = game;
-        render = new Render(this);
+
         setPanelSize();
     }
         private void setPanelSize() {
@@ -21,6 +19,6 @@ public class GameScreen extends JPanel {
     }
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
-        render.render(g);
+        game.getRender().render(g);
     }
 }

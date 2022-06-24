@@ -1,16 +1,15 @@
 package main;
 import inputs.KeyboardListner;
 import inputs.MyMouseListener;
+import scenes.Menu;
+import scenes.Playing;
+import scenes.Settings;
 
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
-class Game extends JFrame implements Runnable{
+public class game extends JFrame implements Runnable{
     private final GameScreen gameScreen;
     private final double FPS_SET = 120.0;
     private final double UPS_SET = 60.0;
@@ -19,7 +18,12 @@ class Game extends JFrame implements Runnable{
     private Thread gameThread;
     private MyMouseListener myMouseListener;
     private KeyListener keyListener;
-    public Game(){
+    private Render render;
+    private Menu menu;
+    private Playing playing;
+    private Settings settings;
+
+    public game(){
         setTitle("JavaProject");
 
         gameScreen = new GameScreen(this);
@@ -27,9 +31,16 @@ class Game extends JFrame implements Runnable{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         pack();
-//        this.setSize(800,820);
-        this.setVisible(true);
+        initClasses();
 
+    }
+
+    private void initClasses() {
+        render = new Render(this);
+        this.setVisible(true);
+        menu=new Menu(this);
+        playing=new Playing(this);
+        settings=new Settings(this);
     }
 
 
@@ -60,7 +71,7 @@ class Game extends JFrame implements Runnable{
         }
     }
     public static void main(String[] args) {
-        Game game = new Game();
+        game game = new game();
         game.initInputs();
         game.start();
     }
@@ -94,4 +105,14 @@ class Game extends JFrame implements Runnable{
             }
         }
     }
+    public Render getRender(){
+        return render;
+    }
+
+    public Menu getMenu() {return menu;}
+    //public void setMenu(Menu menu) {this.menu = menu;}
+    public Playing getPlaying() {return playing;}
+    //public void setPlaying(Playing playing) {this.playing = playing;}
+    public Settings getSettings() {return settings;}
+    //public void setSettings(Settings settings) {this.settings = settings;}
 }
