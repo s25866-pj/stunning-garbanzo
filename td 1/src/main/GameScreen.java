@@ -3,10 +3,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameScreen extends JPanel {
-    private main.game game;
+    private Game game;
     private Dimension size;
 
-    public GameScreen(main.game game) {
+    public GameScreen(Game game) {
         this.game = game;
 
         setPanelSize();

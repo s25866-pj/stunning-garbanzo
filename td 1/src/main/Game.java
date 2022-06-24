@@ -9,7 +9,7 @@ import scenes.Settings;
 import javax.swing.*;
 import java.awt.event.KeyListener;
 
-public class game extends JFrame implements Runnable{
+public class Game extends JFrame implements Runnable{
     private final GameScreen gameScreen;
     private final double FPS_SET = 120.0;
     private final double UPS_SET = 60.0;
@@ -23,13 +23,14 @@ public class game extends JFrame implements Runnable{
     private Playing playing;
     private Settings settings;
 
-    public game(){
+    public Game(){
         setTitle("JavaProject");
 
         gameScreen = new GameScreen(this);
         add(gameScreen);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setResizable(false);
         pack();
         initClasses();
 
@@ -71,7 +72,7 @@ public class game extends JFrame implements Runnable{
         }
     }
     public static void main(String[] args) {
-        game game = new game();
+        Game game = new Game();
         game.initInputs();
         game.start();
     }

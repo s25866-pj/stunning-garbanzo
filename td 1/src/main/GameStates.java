@@ -1,7 +1,7 @@
 package main;
 
 public enum GameStates {
-    PLAYNIG,
+    PLAYING,
     MENU,
     SETTINGS;
 

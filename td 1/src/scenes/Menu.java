@@ -1,5 +1,7 @@
 package scenes;
 
+import main.Game;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,7 +14,7 @@ public class Menu extends GameScene implements SceneMethods{
     private BufferedImage img;
     private ArrayList<BufferedImage> sprites = new ArrayList<>();
     private Random random;
-    public Menu(main.game game) {
+    public Menu(Game game) {
         super(game);
         importImg();
         loadSprites();

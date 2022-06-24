@@ -1,11 +1,11 @@
 package scenes;
-
+import main.Game;
 public class GameScene {
-private main.game game;
-    public GameScene(main.game game){
+    private Game game;
+    public GameScene(Game game){
     this.game=game;
     }
-    public main.game getGame(){
+    public Game getGame(){
         return game;
     }
 }

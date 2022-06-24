@@ -1,15 +1,18 @@
 package scenes;
 
+import main.Game;
+
 import java.awt.*;
 
 public class Settings extends GameScene implements SceneMethods {
 
-    public Settings(main.game game) {
+    public Settings(Game game) {
         super(game);
     }
 
     @Override
     public void render(Graphics g) {
-
+        g.setColor(Color.magenta);
+        g.fillRect(0,0,640,640);
     }
 }
