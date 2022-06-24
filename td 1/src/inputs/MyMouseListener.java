@@ -1,10 +1,15 @@
 package inputs;
 
+import main.Game;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class MyMouseListener implements MouseListener, MouseMotionListener {
+
+    public MyMouseListener(Game game) {
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
