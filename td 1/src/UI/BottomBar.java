@@ -15,7 +15,8 @@ public class BottomBar {
     private MyButton bMenu;
     private Playing playing;
     private ArrayList<MyButton> tileButtons = new ArrayList<>();
-private Tile selectedTile;
+    private Tile selectedTile;
+//    =============================================================================
     public BottomBar(int x, int y, int width, int heigth, Playing playing) {
         this.x = x;
         this.y = y;
@@ -25,14 +26,16 @@ private Tile selectedTile;
         initButtons();
     }
     private void initButtons(){
+        //wielkość kafetlków wyboru{
         int w=50;
         int h=50;
         int xStart=110;
         int yStart=650;
         int xOffset=(int)(w*1.1f);
-
+        //}
         bMenu=new MyButton("Menu",2,642,100,30);
         int i=0;
+        // generowanie obrazków które wyswitlają się w wyborze kafelek
         for(Tile tile : playing.getTileManager().tiles){
             tileButtons.add(new MyButton(tile.getName(),xStart+xOffset*i,yStart,w,h,i));
             i++;
@@ -44,19 +47,18 @@ private Tile selectedTile;
         drawSelectedTile(g);
 
     }
-
     private void drawSelectedTile(Graphics g) {
         if(selectedTile!=null){
-            g.drawImage(selectedTile.getSprite(),550,650,60,60,null);
+            g.drawImage(selectedTile.getSprite(),550,650,70,70,null);
             g.setColor(Color.BLACK);
-            g.drawRect(550,650,60,60);
+            g.drawRect(550,650,70,70);
         }
     }
-
     private void drawTileButtons(Graphics g) {
         for(MyButton b : tileButtons){
+            //obrazki
             g.drawImage(getButtImg(b.getId()),b.x,b.y,b.width,b.heigth,null);
-
+            //generowanie ramki przycisku
             if(b.isMouseOver()){
                 g.setColor(Color.GREEN);
             }else{
@@ -64,20 +66,20 @@ private Tile selectedTile;
             }
             g.drawRect(b.x,b.y,b.width,b.heigth);
             if(b.isMousePressed()) {
-                g.drawRect(b.x + 1, b.y + 1, b.width - 2, b.heigth - 2);
-                g.drawRect(b.x + 2, b.y + 2, b.width - 4, b.heigth - 4);
+                for(int i = 0;i<3;i++){
+                    g.drawRect(b.x + i, b.y + i, b.width - 2*i, b.heigth - 2*i);
+                }
+
             }
         }
     }
     public BufferedImage getButtImg(int id){return playing.getTileManager().getSprite(id);}
     public void draw (Graphics g){
-
         g.setColor(new Color(222,123,14));
-        int heigth = 100;
-        g.fillRect(x,y,width,heigth);
+        int height = 100;
+        g.fillRect(x,y,width,height);
         drawButtons(g);
     }
-
     public void mouseClicked(int x, int y) {
         if(bMenu.getBounds().contains(x,y)){
             SetGameState(MENU);
@@ -85,6 +87,7 @@ private Tile selectedTile;
             for(MyButton b : tileButtons){
                 if(b.getBounds().contains(x,y)){
                     selectedTile=playing.getTileManager().getTile(b.getId());
+                    playing.setSelectedTile(selectedTile);
                     return;
                 }
             }
