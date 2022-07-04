@@ -1,14 +1,15 @@
 package scenes;
-import java.awt.*;
 
 import UI.BottomBar;
-import UI.MyButton;
 import helper.LevelBuild;
+import helper.LoadSaves;
 import main.Game;
 import managers.TileManager;
 import objects.Tile;
 
-import static main.GameStates.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Playing extends GameScene implements SceneMethods {
     private int [][] lvl;
@@ -25,6 +26,29 @@ public class Playing extends GameScene implements SceneMethods {
         lvl = LevelBuild.getLevelData();
         tileManager=new TileManager();
         bottomBar=new BottomBar(0,640,640,100,this);
+
+        //LoadSaves.CreateFile();
+        //LoadSaves.WriteToFile();
+        //LoadSaves.ReadFromFile();
+        //File lvlFile = new File("td 1/src/res/"+name+".txt");
+        loadDefaultLevel();
+        //createDefaultLevel();
+
+    }
+
+    private void loadDefaultLevel() {
+        lvl=LoadSaves.GetLevelData("new_level");
+    }
+    public void saveLevel(){
+        LoadSaves.SaveLevel("new_level",lvl);
+    }
+
+    private void createDefaultLevel() {
+        int[] arr = new int[400];
+        for (int i =0; i<arr.length;i++){
+            arr[i]=0;
+        }
+        LoadSaves.CreateLevel("new_level",arr);
     }
 
     @Override
