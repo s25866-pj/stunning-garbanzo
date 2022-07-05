@@ -1,4 +1,6 @@
 package main;
+import scenes.Playing;
+
 import java.awt.*;
 
 public class Render {
@@ -12,6 +14,7 @@ public class Render {
     }
 
     public void render(Graphics g){
+        System.out.println(Playing.lvl);
         switch (GameStates.gameStates){
             case MENU:
                 game.getMenu().render(g);

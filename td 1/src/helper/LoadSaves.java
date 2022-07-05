@@ -2,10 +2,14 @@ package helper;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LoadSaves {
+    //static String name;
+    static String Filepath ="./res/test.txt";
+    //static String NFilepath= "./res/" + name + ".txt";
     public static BufferedImage getSpriteAtlas(){
         BufferedImage img =null;
         System.out.println("Load image");
@@ -19,7 +23,7 @@ public class LoadSaves {
     }
     public static void CreateFile(){
         System.out.println("Create file");
-        File txtFile = new File("td 1/src/res/test.txt");
+        File txtFile = new File(Filepath);
         try {
             txtFile.createNewFile();
         } catch (IOException e) {
@@ -28,7 +32,7 @@ public class LoadSaves {
     }
     private static void WriteToFile(File f, int[] idArr){
         System.out.println("Write to file");
-        File txtFile = new File("td 1/src/res/new_level.txt");
+        File txtFile = new File(Filepath);
         try {
             PrintWriter pw =new PrintWriter(f);
             for(Integer i :idArr){
@@ -41,14 +45,14 @@ public class LoadSaves {
     }
     public static void SaveLevel(String name,int[][] idArr){
         System.out.println("Save level");
-        File LevelFile = new File("td 1/src/res/" + name + ".txt");
-//        if(LevelFile.exists()){
-//            WriteToFile(LevelFile,Utilz.TwoDto1DintArr(idArr));
-//            System.out.println("Zapisano plik");
-//        }else{
-//            System.out.println("Plik: "+name+ " nie istnieje");
-//            return;
-//        }
+        File LevelFile = new File("./res/" + name + ".txt");
+        if(LevelFile.exists()){
+            WriteToFile(LevelFile,Utilz.TwoDto1DintArr(idArr));
+            System.out.println("Zapisano plik");
+        }else{
+            System.out.println("Plik: "+name+ " nie istnieje");
+            return;
+        }
     }
     public static ArrayList<Integer> ReadFromFile(File file){
         ArrayList<Integer> list = new ArrayList<>();
@@ -64,23 +68,24 @@ public class LoadSaves {
         return list;
     }
     public static void CreateLevel(String name, int[] idArr){
-        System.out.println("Create level");
-        File NewLevel = new File("td 1/src/res/" + name + ".txt");
-        if(NewLevel.exists()){
+        System.out.println(name);
+        File new_level= new File("td 1/src/res/" + name + ".txt");;
+        if(new_level.exists()){
             System.out.println("Plik: "+name+ " istnieje");
         }else{
             try {
-                NewLevel.createNewFile();
+                new_level.createNewFile();
             } catch (IOException e) {
+                System.out.println(new_level);
                 throw new RuntimeException(e);
             }
 
         }
-        WriteToFile(NewLevel, idArr);
+        //WriteToFile(NewLevel, idArr);
     }
     public static int[][] GetLevelData(String name){
         System.out.println("Get Level Data");
-        File lvlFile = new File("td 1/src/res/"+name+".txt");
+        File lvlFile = new File("./res/" + name + ".txt");
         System.out.println("pobrano plik: "+ name+".txt");
         if(lvlFile.exists()){
             System.out.println("Plik: "+name+ " istnieje");
