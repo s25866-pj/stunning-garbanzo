@@ -12,7 +12,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Playing extends GameScene implements SceneMethods {
-    private int [][] lvl;
+    public int[][] lvl;
     private TileManager tileManager;
     private Tile selectedTile;
     private int mouseX,mouseY;
@@ -24,15 +24,16 @@ public class Playing extends GameScene implements SceneMethods {
         super(game);
 
         lvl = LevelBuild.getLevelData();
+        System.out.println(lvl[0][0]);
         tileManager=new TileManager();
         bottomBar=new BottomBar(0,640,640,100,this);
 
         //LoadSaves.CreateFile();
         //LoadSaves.WriteToFile();
         //LoadSaves.ReadFromFile();
-        //File lvlFile = new File("td 1/src/res/"+name+".txt");
+        createDefaultLevel();
         loadDefaultLevel();
-        //createDefaultLevel();
+
 
     }
 
@@ -53,7 +54,7 @@ public class Playing extends GameScene implements SceneMethods {
 
     @Override
     public void render(Graphics g) {
-        for(int i= 0;i<lvl.length;i++){
+        for(int i = 0;i<lvl.length;i++){
             for(int j=0;j<lvl[i].length;j++){
                 int id=lvl[i][j];
                 g.drawImage(tileManager.getSprite(id),j*32,i*32,null);
